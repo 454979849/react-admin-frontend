@@ -1,21 +1,31 @@
-import { lazy } from 'react'
+import { lazy } from 'react';
+import {
+  HomeOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { RouteModel } from '~/common/sharedModel';
 const Admin = lazy(() => import('~/pages/admin/Admin'));
 const Login = lazy(() => import('~/pages/login/Login'));
-const Temp = lazy(() => import('~/pages/temp/Temp'));
+const Home = lazy(() => import('~/pages/admin/child-pages/home/Home'));
 
 const routes: RouteModel[] = [
   {
-    path: '/',
+    index: true,
+    title: '首页',
+    path: '/admin',
     component: Admin,
     routes: [
       {
-        path: '/temp',
-        component: Temp
+        index: true,
+        path: 'home',
+        component: Home,
+        icon: <HomeOutlined />,
+        title: '首页'
       },
     ],
   },
   {
+    title: '登录',
     path: '/login',
     component: Login,
   },

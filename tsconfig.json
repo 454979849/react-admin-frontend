@@ -29,5 +29,5 @@
   "exclude": [
     "node_modules"
   ],
-  "extends": "./paths.json"
+  "extends": "./tsExtendConfig.json"
 }

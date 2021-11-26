@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.less';
+import styles from './App.less';
 import Routes from '~/router/Routes'
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Routes />
     </div>
   );

@@ -2725,7 +2725,7 @@ babel-plugin-dynamic-import-node@^2.3.3:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-import@^1.13.3:
+babel-plugin-import@^1.13.1, babel-plugin-import@^1.13.3:
   version "1.13.3"
   resolved "https://registry.nlark.com/babel-plugin-import/download/babel-plugin-import-1.13.3.tgz"
   integrity sha1-nbu6fRrHK9QSkXqDDUReAJQdJtc=
@@ -3433,6 +3433,11 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.nlark.com/clone/download/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/co/-/co-4.6.0.tgz"
@@ -3744,6 +3749,23 @@ cosmiconfig@^7.0.1:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+craco-antd@^1.19.0:
+  version "1.19.0"
+  resolved "https://registry.npm.taobao.org/craco-antd/download/craco-antd-1.19.0.tgz#ad3b95853a29a20c6de4003874517ae2a995064b"
+  integrity sha1-rTuVhTopogxt5AA4dFF64qmVBks=
+  dependencies:
+    babel-plugin-import "^1.13.1"
+    craco-less "1.17.0"
+    less-vars-to-js "^1.3.0"
+
+craco-less@1.17.0:
+  version "1.17.0"
+  resolved "https://registry.nlark.com/craco-less/download/craco-less-1.17.0.tgz#3d92e59966e1fdecef4d173b2389985a75cb6bb9"
+  integrity sha1-PZLlmWbh/ezvTRc7I4mYWnXLa7k=
+  dependencies:
+    less "^3.11.1"
+    less-loader "^6.1.0"
 
 craco-less@^1.20.0:
   version "1.20.0"
@@ -7074,6 +7096,16 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
+less-loader@^6.1.0:
+  version "6.2.0"
+  resolved "https://registry.npmmirror.com/less-loader/download/less-loader-6.2.0.tgz?cache=0&sync_timestamp=1634563244377&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fless-loader%2Fdownload%2Fless-loader-6.2.0.tgz#8b26f621c155b342eefc24f5bd6e9dc40c42a719"
+  integrity sha1-iyb2IcFVs0Lu/CT1vW6dxAxCpxk=
+  dependencies:
+    clone "^2.1.2"
+    less "^3.11.3"
+    loader-utils "^2.0.0"
+    schema-utils "^2.7.0"
+
 less-loader@^7.3.0:
   version "7.3.0"
   resolved "https://registry.npmmirror.com/less-loader/download/less-loader-7.3.0.tgz?cache=0&sync_timestamp=1634563244377&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fless-loader%2Fdownload%2Fless-loader-7.3.0.tgz"
@@ -7082,6 +7114,29 @@ less-loader@^7.3.0:
     klona "^2.0.4"
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+less-vars-to-js@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.nlark.com/less-vars-to-js/download/less-vars-to-js-1.3.0.tgz#c322cf43a3c8fc3fab655da3e51a14c1499ab571"
+  integrity sha1-wyLPQ6PI/D+rZV2j5RoUwUmatXE=
+  dependencies:
+    strip-json-comments "^2.0.1"
+
+less@^3.11.1, less@^3.11.3:
+  version "3.13.1"
+  resolved "https://registry.npmmirror.com/less/download/less-3.13.1.tgz?cache=0&sync_timestamp=1633303807622&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fless%2Fdownload%2Fless-3.13.1.tgz#0ebc91d2a0e9c0c6735b83d496b0ab0583077909"
+  integrity sha1-DryR0qDpwMZzW4PUlrCrBYMHeQk=
+  dependencies:
+    copy-anything "^2.0.1"
+    tslib "^1.10.0"
+  optionalDependencies:
+    errno "^0.1.1"
+    graceful-fs "^4.1.2"
+    image-size "~0.5.0"
+    make-dir "^2.1.0"
+    mime "^1.4.1"
+    native-request "^1.0.5"
+    source-map "~0.6.0"
 
 less@^4.1.1:
   version "4.1.2"
@@ -7622,6 +7677,11 @@ nanomatch@^1.2.9:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+native-request@^1.0.5:
+  version "1.1.0"
+  resolved "https://registry.nlark.com/native-request/download/native-request-1.1.0.tgz?cache=0&sync_timestamp=1630539957422&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fnative-request%2Fdownload%2Fnative-request-1.1.0.tgz#acdb30fe2eefa3e1bc8c54b3a6852e9c5c0d3cb0"
+  integrity sha1-rNsw/i7vo+G8jFSzpoUunFwNPLA=
 
 native-url@^0.2.6:
   version "0.2.6"
@@ -10940,6 +11000,11 @@ strip-indent@^3.0.0:
   dependencies:
     min-indent "^1.0.0"
 
+strip-json-comments@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.nlark.com/strip-json-comments/download/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+  integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+
 strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
@@ -11262,7 +11327,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
