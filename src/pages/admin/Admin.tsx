@@ -1,12 +1,13 @@
-import React, { ReactElement } from 'react';
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { ReactElement } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import { RoutePropsModel } from '~/common/sharedModel';
 import LeftNav from '~/components/admin/left-nav/LeftNav';
 import Header from '~/components/admin/header/Header';
+import styles from './index.less';
 
 
-const { Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 interface Props extends RoutePropsModel {
 
 }
@@ -16,7 +17,7 @@ function Admin({
 }: Props): ReactElement {
   return (
     <>
-      <Layout style={{
+      <Layout className={styles.admin} style={{
         minHeight: '100%',
       }}>
         <Sider>

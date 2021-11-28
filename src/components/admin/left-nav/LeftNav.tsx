@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 
 import { RouteModel, RoutePropsModel } from '~/common/sharedModel';
@@ -38,9 +38,8 @@ const LeftNav = ({
   };
 
   return (
-    <>
+    <div className={styles.leftNav}>
       <Link to={'/'}
-        className={styles.leftNav}
       >
         <header className={styles.leftNavHeader}>
           <h1>后台管理</h1>
@@ -56,7 +55,7 @@ const LeftNav = ({
           getMenuNodes(routes)
         }
       </Menu>
-    </>
+    </div>
   )
 }
 

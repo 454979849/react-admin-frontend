@@ -62,6 +62,14 @@ module.exports = {
     // 别名
     alias: {
       "~": path.resolve("src"),
+    },
+  },
+  devServer: {
+    port: 3000,
+    proxy: {
+      '/api/': {
+        target: 'http://localhost:9000',
+      }
     }
   },
 };

@@ -14,3 +14,10 @@ export interface RouteModel {
 export interface RoutePropsModel {
   routes: RouteModel[];
 }
+
+// table的操作动作按钮约束
+export interface ActionBtnModel {
+  text?: string;  // 文本
+  onClick?: Function; // 点击事件
+  content?: React.ReactElement; // 按钮对象
+}
