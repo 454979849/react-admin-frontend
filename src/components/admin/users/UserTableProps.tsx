@@ -1,5 +1,6 @@
 import { ActionBtnModel } from "~/common/sharedModel";
 import ActionButtons from "~/components/shared/actionButtons/ActionButtons";
+import SecretContent from "~/components/shared/secretContent/SecretContent";
 
 export interface UserModel {
   id: number;
@@ -27,7 +28,8 @@ export const getColumns = () => {
       key: 'password',
       title: '密码',
       dataIndex: 'password',
-      width: '25%'
+      width: '25%',
+      render: (value: string) => (<SecretContent value={value} count={9} />)
     },
     {
       key: 'role',
