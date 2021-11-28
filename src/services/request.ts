@@ -22,8 +22,9 @@ const request = (config: Config) => {
   instance.interceptors.response.use(response => {
     return response;
   }, err => {
+    const response = err.response;
     message.error({
-      content: `网络请求错误, ${err.message}`
+      content: `请求错误(${response.status}), ${response.data.message || response.data}`
     });
   });
 

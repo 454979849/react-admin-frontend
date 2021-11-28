@@ -1,6 +1,7 @@
 import { ActionBtnModel } from "~/common/sharedModel";
 import ActionButtons from "~/components/shared/actionButtons/ActionButtons";
 import SecretContent from "~/components/shared/secretContent/SecretContent";
+import { DeleteUser } from "~/utils/users";
 
 export interface UserModel {
   id: number;
@@ -15,7 +16,7 @@ export const initPagination = {
   total: 0
 };
 
-export const getColumns = () => {
+export const getColumns = (refreshTable: Function) => {
   return [
     {
       key: 'name',
@@ -41,22 +42,25 @@ export const getColumns = () => {
       key: ' operations',
       title: '操作',
       width: '25%',
-      render: () => (
+      render: (_text: any, record: any, _index: any) => (
         <ActionButtons
-          actions={getActions()}
+          actions={getActions(record, refreshTable)}
         />
       )
     },
   ];
 };
 
-const getActions = (): ActionBtnModel[] => {
+const getActions = (record: any, refreshTable: Function): ActionBtnModel[] => {
   return [
     {
       text: '修改',
     },
     {
       text: '删除',
+      onClick: () => {
+        DeleteUser(record.id, refreshTable);
+      }
     },
   ];
 };

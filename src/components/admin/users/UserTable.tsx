@@ -7,6 +7,11 @@ const UserTable = () => {
   const [userList, setUserList] = useState<UserModel[]>([]); //用户列表元数据
   const [pagination, setPagination] = useState<object>(initPagination);  // 用户列表总长度
   const [loading, setLoading] = useState<boolean>(false);  // table的loading
+  const [refresh, setRefresh] = useState<number>(0);
+
+  const refreshTable = () => {
+    setRefresh(refresh + 1);
+  };
 
   const fetchUserList = async (pagination: any) => {
     setLoading(true);
@@ -28,17 +33,17 @@ const UserTable = () => {
 
   useEffect(() => {
     fetchUserList(pagination);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [refresh]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleTableChange = (tablePagination: any) => {
     setPagination({
       ...pagination,
       ...tablePagination
     });
-    fetchUserList(tablePagination);
+    refreshTable();
   };
 
-  const columns = getColumns();
+  const columns = getColumns(refreshTable.bind(this));
 
   return (
     <div>
@@ -49,6 +54,8 @@ const UserTable = () => {
         pagination={pagination}
         loading={loading}
         onChange={handleTableChange}
+        size='middle'
+        bordered
       />
     </div>
   )

@@ -8,3 +8,13 @@ export const GetUsers = (config: object) => {
     },
   });
 };
+
+export const deleteUser = (config: object) => {
+  return request({
+    url: '/api/admin/users',
+    method: 'DELETE',
+    data: {
+      ...config
+    },
+  });
+};
