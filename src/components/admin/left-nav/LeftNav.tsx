@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 
 import { RouteModel, RoutePropsModel } from '~/common/sharedModel';
@@ -37,6 +37,8 @@ const LeftNav = ({
     });
   };
 
+  const path = useLocation().pathname.substring(1);
+
   return (
     <div className={styles.leftNav}>
       <Link to={'/'}
@@ -48,7 +50,7 @@ const LeftNav = ({
       <Menu
         mode="inline"
         theme="dark"
-      // selectedKeys={[path]}
+        selectedKeys={[path]}
       // defaultOpenKeys={[this.openKey]}
       >
         {

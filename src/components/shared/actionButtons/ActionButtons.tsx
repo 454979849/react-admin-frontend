@@ -15,11 +15,10 @@ const ActionButtons = ({
     <div className={styles.actionButtons}>
       {
         actions.map((action, index) => (
-          <>
+          <div key={index}>
             {action.content}
             {!action.content && (
               <span
-                key={index}
                 className={styles.actionBtn}
                 onClick={() => {
                   if (action.onClick) {
@@ -35,7 +34,7 @@ const ActionButtons = ({
                 <span className={styles.btnSlice}>|</span>
               )
             }
-          </>
+          </div>
         ))
       }
     </div>

@@ -16,7 +16,7 @@ const routes: RouteModel[] = [
   {
     index: true,
     title: '首页',
-    path: '/admin',
+    path: '/',
     component: Admin,
     routes: [
       {
