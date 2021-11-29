@@ -5,9 +5,11 @@ import {
 
 export const GetUsers = (config: object) => {
   return Promise.resolve({
-    data: userListData,
-    status: 200,
-    total: userListData.length
+   status: 200,
+   data: {
+     data: userListData,
+     total: userListData.length
+   },
   });
 };
 

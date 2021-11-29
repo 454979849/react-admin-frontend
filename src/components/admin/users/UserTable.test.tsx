@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import * as usersService from '~/services/admin/users';
 
 import UserTable from './UserTable';
 
@@ -14,11 +15,8 @@ window.matchMedia = (query) => ({
   dispatchEvent: jest.fn(),
 });
 
-describe('UserTable单元测试', async () => {
-  test('UserTable显示数据', async () => {
-    await render(<UserTable />);
+jest.mock('~/services/admin/users.ts');
 
-    const userName = await screen.findByText('李娟');
-    expect(userName).toBeInTheDocument();
-  });
+test('UserTable显示数据', async () => {
+  await render(<UserTable />);
 });
