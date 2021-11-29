@@ -16,19 +16,23 @@ const UserTable = () => {
   const fetchUserList = async (pagination: any) => {
     setLoading(true);
 
-    const result = await GetUsers({
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
-    });
-    if (result.status === 200) {
-      const { data, total } = result.data;
-      setUserList(data);
-      setPagination({
-        ...setPagination,
-        total
+    try {
+      const result = await GetUsers({
+        currentPage: pagination.current,
+        pageSize: pagination.pageSize,
       });
+      if (result.status === 200) {
+        const { data, total } = result.data;
+        setUserList(data);
+        setPagination({
+          ...setPagination,
+          total
+        });
+        setLoading(false);
+      }
+    } catch (err) {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   useEffect(() => {
