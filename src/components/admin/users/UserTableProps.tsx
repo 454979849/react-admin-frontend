@@ -55,9 +55,11 @@ const getActions = (record: any, refreshTable: Function): ActionBtnModel[] => {
   return [
     {
       text: '修改',
+      testId: 'test-user-table-update-btn'
     },
     {
       text: '删除',
+      testId: 'test-user-table-delete-btn',
       onClick: () => {
         DeleteUser(record.id, refreshTable);
       }

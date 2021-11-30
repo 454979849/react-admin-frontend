@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import ReactOM from 'react-dom'
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import * as usersService from '~/services/admin/users';
 
 import UserTable from './UserTable';
@@ -18,5 +19,18 @@ window.matchMedia = (query) => ({
 jest.mock('~/services/admin/users.ts');
 
 test('UserTable显示数据', async () => {
-  await render(<UserTable />);
+  act(() => {
+    render(<UserTable />);
+  });
+
+  expect.assertions(2);
+  const LiJuanText = await screen.findByText('李娟');
+  expect(LiJuanText).toBeInTheDocument();
+
+  const deleteBtn = await screen.getAllByTestId('test-user-table-delete-btn');
+  fireEvent.click(deleteBtn[0]);
+  await waitFor(async () => {
+    const deleteText = await screen.findByText('删除成功');
+    expect(deleteText).toBeInTheDocument();
+  });
 });

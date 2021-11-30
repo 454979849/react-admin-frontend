@@ -20,6 +20,7 @@ const ActionButtons = ({
             {!action.content && (
               <span
                 className={styles.actionBtn}
+                data-testid={action.testId}
                 onClick={() => {
                   if (action.onClick) {
                     action.onClick();
