@@ -24,9 +24,12 @@ test('UserTable显示数据', async () => {
   });
 
   expect.assertions(2);
+
+  //获取用户列表
   const LiJuanText = await screen.findByText('李娟');
   expect(LiJuanText).toBeInTheDocument();
 
+  // 删除操作
   const deleteBtn = await screen.getAllByTestId('test-user-table-delete-btn');
   fireEvent.click(deleteBtn[0]);
   await waitFor(async () => {

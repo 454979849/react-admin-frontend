@@ -1,9 +1,9 @@
-import { deleteUser } from '~/services/admin/users';
+import { DeleteUser } from '~/services/admin/users';
 import { message } from 'antd';
 
-export const DeleteUser = async (userId: string, refreshTable: Function) => {
+export const deleteUser = async (userId: string, refreshTable: Function) => {
   try {
-    const result = await deleteUser({
+    const result = await DeleteUser({
       id: userId
     });
     if (result.status === 200) {

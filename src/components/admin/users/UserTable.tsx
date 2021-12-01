@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
-import { GetUsers } from '~/services/admin/users';
-import { UserModel, getColumns, initPagination } from './UserTableProps';
+import { Table, Modal } from 'antd';
+import { GetUsers, GetRoleList } from '~/services/admin/users';
+import { UserModel, getColumns, initPagination, HandleColumns } from './UserTableProps';
+import CreateOrUpdateUser from './CreateOrUpdateUser';
 
 const UserTable = () => {
   const [userList, setUserList] = useState<UserModel[]>([]); //用户列表元数据
+  const [roleList, setRoleList] = useState<string[]>([]);   // 用户角色元数据
   const [pagination, setPagination] = useState<object>(initPagination);  // 用户列表总长度
   const [loading, setLoading] = useState<boolean>(false);  // table的loading
   const [refresh, setRefresh] = useState<number>(0);
+  const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<UserModel | null>(null);
 
   const refreshTable = () => {
     setRefresh(refresh + 1);
@@ -35,9 +39,29 @@ const UserTable = () => {
     }
   }
 
+  const fetchRoleList = async () => {
+    setLoading(true);
+
+    try {
+      const result = await GetRoleList();
+      if (result.status === 200) {
+
+        const { data } = result.data;
+        setRoleList(data);
+        setLoading(false);
+      }
+    } catch (err) {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchUserList(pagination);
   }, [refresh]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    fetchRoleList();
+  }, [])
 
   const handleTableChange = (tablePagination: any) => {
     setPagination({
@@ -47,7 +71,13 @@ const UserTable = () => {
     refreshTable();
   };
 
-  const columns = getColumns(refreshTable.bind(this));
+  const handleColumns: HandleColumns = {
+    refreshTable: refreshTable.bind(this),
+    setShowUpdateModal: setShowUpdateModal.bind(this),
+    setSelectedUser: setSelectedUser.bind(this),
+  };
+
+  const columns = getColumns(handleColumns);
 
   return (
     <div>
@@ -61,6 +91,18 @@ const UserTable = () => {
         size='middle'
         bordered
       />
+
+      <Modal
+        title={!!selectedUser ? '修改用户信息' : '创建用户信息'}
+        visible={showUpdateModal}
+        onCancel={() => { setShowUpdateModal(false) }}
+      >
+        <CreateOrUpdateUser
+          roleList={roleList}
+          selectedUser={selectedUser}
+          isUpdate={!!selectedUser}
+        />
+      </Modal>
     </div>
   )
 }
