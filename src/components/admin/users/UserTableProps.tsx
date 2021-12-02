@@ -1,3 +1,4 @@
+import React from 'react';
 import { ActionBtnModel } from "~/common/sharedModel";
 import ActionButtons from "~/components/shared/actionButtons/ActionButtons";
 import SecretContent from "~/components/shared/secretContent/SecretContent";
@@ -6,13 +7,13 @@ import { deleteUser } from "~/utils/users";
 export interface HandleColumns {
   refreshTable: Function;
   setShowUpdateModal: Function;
-  setSelectedUser: Function
+  setSelectedUser: Function;
 };
 export interface UserModel {
   id: string;
   name: string;
   password: string;
-  role: string;
+  role: number;
 }
 
 export const initPagination = {
@@ -21,7 +22,7 @@ export const initPagination = {
   total: 0
 };
 
-export const getColumns = (handleColumns: HandleColumns) => {
+export const getColumns = (handleColumns: HandleColumns, roleList: string[]) => {
   return [
     {
       key: 'name',
@@ -41,7 +42,8 @@ export const getColumns = (handleColumns: HandleColumns) => {
       key: 'role',
       title: '用户角色',
       dataIndex: 'role',
-      width: '25%'
+      width: '25%',
+      render: (role: number) => roleList[role]
     },
     {
       key: ' operations',

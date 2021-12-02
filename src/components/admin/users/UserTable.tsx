@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Modal } from 'antd';
+import { Table, Modal, Button } from 'antd';
 import { GetUsers, GetRoleList } from '~/services/admin/users';
 import { UserModel, getColumns, initPagination, HandleColumns } from './UserTableProps';
 import CreateOrUpdateUser from './CreateOrUpdateUser';
@@ -29,7 +29,7 @@ const UserTable = () => {
         const { data, total } = result.data;
         setUserList(data);
         setPagination({
-          ...setPagination,
+          ...pagination,
           total
         });
         setLoading(false);
@@ -77,10 +77,21 @@ const UserTable = () => {
     setSelectedUser: setSelectedUser.bind(this),
   };
 
-  const columns = getColumns(handleColumns);
+  const columns = getColumns(handleColumns, roleList);
+
+
 
   return (
     <div>
+      <Button
+        type='primary'
+        style={{ margin: '10px ' }}
+        onClick={() => {
+          setShowUpdateModal(!showUpdateModal);
+        }}
+      >
+        创建用户
+      </Button>
       <Table
         rowKey={record => record.id}
         columns={columns}
@@ -95,12 +106,25 @@ const UserTable = () => {
       <Modal
         title={!!selectedUser ? '修改用户信息' : '创建用户信息'}
         visible={showUpdateModal}
-        onCancel={() => { setShowUpdateModal(false) }}
+        okText={!!selectedUser ? '修改' : '创建'}
+        cancelText={'取消'}
+        onCancel={() => {
+          setShowUpdateModal(false);
+          setSelectedUser(null);
+        }}
+        destroyOnClose
+        footer={null}
       >
         <CreateOrUpdateUser
           roleList={roleList}
           selectedUser={selectedUser}
           isUpdate={!!selectedUser}
+          onSucess={() => {
+            setTimeout(() => {
+              setShowUpdateModal(!showUpdateModal);
+              refreshTable();
+            }, 1000);
+          }}
         />
       </Modal>
     </div>

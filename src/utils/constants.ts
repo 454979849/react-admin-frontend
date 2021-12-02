@@ -1,1 +1,0 @@
-export const BASE_URL = 'https://randomapi.com/'; // 网络请求基础url
