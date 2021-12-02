@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { Form, Input, Select, Button, message } from 'antd';
 import { UserModel } from './UserTableProps';
 import CC from '~/constants/constants';
@@ -51,6 +51,7 @@ const CreateOrUpdateUser = ({
   return (
     <div>
       <Form
+        data-testid='test-user-table-create-update-form'
         form={form}
         name='create-or-update-user-form'
         style={{
@@ -74,6 +75,7 @@ const CreateOrUpdateUser = ({
           initialValue={isUpdate ? selectedUser?.name : ''}
         >
           <Input
+            data-testid='test-user-table-name-input'
             placeholder='请输入姓名'
             disabled={isUpdate}
           />
@@ -101,6 +103,7 @@ const CreateOrUpdateUser = ({
           initialValue={isUpdate ? selectedUser?.password : ''}
         >
           <Input.Password
+            data-testid='test-user-table-password-input'
             placeholder='请输入密码'
           />
         </Item>
@@ -118,11 +121,17 @@ const CreateOrUpdateUser = ({
         <Item
           {...CC.FORM_TAIL_LAYOUT}
         >
-          <Button type='primary' onClick={submit} style={{ width: '100%' }}>{isUpdate ? '修改' : '创建'}</Button>
+          <Button
+            data-testid='test-user-table-create-update-form-btn'
+            type='primary'
+            onClick={submit}
+            style={{ width: '100%' }}>
+            {isUpdate ? '修改' : '创建'}
+          </Button>
         </Item>
       </Form>
     </div>
   )
 }
 
-export default forwardRef(CreateOrUpdateUser);
+export default CreateOrUpdateUser;

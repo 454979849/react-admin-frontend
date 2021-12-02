@@ -84,6 +84,7 @@ const UserTable = () => {
   return (
     <div>
       <Button
+        data-testid='test-user-table-create-btn'
         type='primary'
         style={{ margin: '10px ' }}
         onClick={() => {

@@ -16,6 +16,8 @@ const request = (config: Config) => {
   });
 
   instance.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    console.log(token)
     return config;
   });
 

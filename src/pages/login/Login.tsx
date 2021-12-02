@@ -1,22 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react';
+import LoginForm from '~/components/login/LoginForm';
 
-interface Props {
-
-}
-interface State {
-
-}
-
-class Login extends Component<Props, State> {
-  state = {}
-
-  render() {
-    return (
-      <div>
-        Login
-      </div>
-    )
-  }
+const Login = () => {
+  return (
+    <div style={{ height: '100%' }}>
+      <LoginForm />
+    </div>
+  )
 }
 
 export default Login
