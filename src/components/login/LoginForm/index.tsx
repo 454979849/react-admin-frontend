@@ -18,7 +18,6 @@ const LoginForm = () => {
 
       if (result.status === 200) {
         message.success('登陆成功');
-        console.log(result.data);
         localStorage.setItem('token', result.data.data.token);
         setTimeout(() => {
           navigate('/', { replace: true });

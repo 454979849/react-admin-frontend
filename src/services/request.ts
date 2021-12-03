@@ -15,7 +15,12 @@ const request = (config: Config) => {
   });
 
   instance.interceptors.request.use(config => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token') || '';
+    if (config.url !== '/api/login') {
+      if (config.headers) {
+        config.headers['sec_token'] = token;
+      }
+    }
     return config;
   });
 
@@ -25,6 +30,8 @@ const request = (config: Config) => {
     const response = err.response;
     if (response.status === 401) {
       localStorage.removeItem('token');
+      const gotoLogin = new CustomEvent('gotoLoginEvent');
+      window.parent.dispatchEvent(gotoLogin);
     }
     message.error({
       content: `请求错误(${response.status}), ${response.data.message || response.data}`

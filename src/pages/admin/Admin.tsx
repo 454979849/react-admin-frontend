@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
-import { Outlet, Route, Navigate, Routes } from 'react-router-dom';
+import { ReactElement, useEffect } from 'react';
+import { Outlet, Route, Navigate, Routes, useNavigate } from 'react-router-dom';
 import { Layout } from 'antd';
 import { RoutePropsModel } from '~/common/sharedModel';
 import LeftNav from '~/components/admin/left-nav/LeftNav';
@@ -14,6 +14,21 @@ interface Props extends RoutePropsModel {
 function Admin({
   routes
 }: Props): ReactElement {
+
+  const navigate = useNavigate();
+
+  const gotoLogin = () => {
+    setTimeout(() => {
+      navigate('/login', { replace: true });
+    }, 1000);
+  }
+
+  useEffect(() => {
+    window.addEventListener('gotoLoginEvent', gotoLogin);
+    return () => {
+      window.removeEventListener('gotoLoginEvent', gotoLogin);
+    }
+  })
 
   if (!localStorage.getItem('token')) {
     return (
