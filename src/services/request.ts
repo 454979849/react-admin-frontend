@@ -30,6 +30,7 @@ const request = (config: Config) => {
     const response = err.response;
     if (response.status === 401) {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       const gotoLogin = new CustomEvent('gotoLoginEvent');
       window.parent.dispatchEvent(gotoLogin);
     }

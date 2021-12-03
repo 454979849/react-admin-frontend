@@ -41,4 +41,12 @@ const routes: RouteModel[] = [
   },
 ];
 
+const userString = localStorage.getItem('user');
+
+if (userString) {
+  const user = JSON.parse(userString);
+  if (user?.role !== 0) {
+    routes[0].routes?.pop();
+  }
+}
 export default routes;

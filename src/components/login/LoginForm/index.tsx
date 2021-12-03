@@ -18,6 +18,7 @@ const LoginForm = () => {
 
       if (result.status === 200) {
         message.success('登陆成功');
+        localStorage.setItem('user', JSON.stringify(result.data.data));
         localStorage.setItem('token', result.data.data.token);
         setTimeout(() => {
           navigate('/', { replace: true });
