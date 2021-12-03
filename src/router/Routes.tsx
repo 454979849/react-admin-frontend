@@ -4,8 +4,6 @@ import { RouteModel } from '~/common/sharedModel';
 import routes from './config';
 
 const Routers = () => {
-  // let redirectPath = '';
-
   const getRouteList = (routes: RouteModel[], prePath: string) => {
     let redirectPath = '';
     if (!routes || routes.length === 0) {
@@ -43,7 +41,6 @@ const Routers = () => {
           {
             getRouteList(routes, '/')
           }
-          {/* <Route path='/' element={<Navigate replace to={redirectPath} />} /> */}
         </Routes>
       </Suspense>
     </BrowserRouter >

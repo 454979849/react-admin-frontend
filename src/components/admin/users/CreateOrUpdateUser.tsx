@@ -44,8 +44,7 @@ const CreateOrUpdateUser = ({
           onSucess();
         }
       }
-    } catch (errInfo) {
-    }
+    } catch (errInfo) { }
   };
 
   return (

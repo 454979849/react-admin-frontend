@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-
 interface Config {
   url: string;
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -17,7 +16,6 @@ const request = (config: Config) => {
 
   instance.interceptors.request.use(config => {
     const token = localStorage.getItem('token');
-    console.log(token)
     return config;
   });
 
@@ -25,6 +23,9 @@ const request = (config: Config) => {
     return response;
   }, err => {
     const response = err.response;
+    if (response.status === 401) {
+      localStorage.removeItem('token');
+    }
     message.error({
       content: `请求错误(${response.status}), ${response.data.message || response.data}`
     });

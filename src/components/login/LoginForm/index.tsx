@@ -1,11 +1,32 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import CC from '~/constants/constants';
 import styles from './index.less';
+import { Login } from '~/services/login/login';
 const { Item } = Form;
+
 
 const LoginForm = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
+
+  const submit = async () => {
+    try {
+      const payload = await form.validateFields();
+      const result = await Login(payload);
+
+      if (result.status === 200) {
+        message.success('登陆成功');
+        console.log(result.data);
+        localStorage.setItem('token', result.data.data.token);
+        setTimeout(() => {
+          navigate('/', { replace: true });
+        }, 1000);
+      }
+    } catch (errInfo) { }
+  };
+
   return (
     <div className={styles.loginForm}>
       <Form
@@ -54,7 +75,13 @@ const LoginForm = () => {
             placeholder='请输入密码'
           />
         </Item>
-        <Button type='primary' style={{ width: '100%' }}>登录</Button>
+        <Button
+          type='primary'
+          style={{ width: '100%' }}
+          onClick={submit}
+        >
+          登录
+        </Button>
       </Form>
 
     </div>
